@@ -1,4 +1,4 @@
-const Intern = require ('../Develop/Intern');
+const Intern = require ('../Intern');
 
 const intern= new Intern('Gean','778899','Gean@profile.com.au','UTS');
 

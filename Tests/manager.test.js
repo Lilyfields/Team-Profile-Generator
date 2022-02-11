@@ -1,4 +1,4 @@
-const Manager = require ('../Develop/Manager');
+const Manager = require ('../Manager')
 
 const manager= new Manager('Bob','445566','Bob@profile.com.au','(02) 96105547');
 

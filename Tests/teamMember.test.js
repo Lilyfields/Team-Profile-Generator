@@ -1,4 +1,4 @@
-const TeamMembers = require ('../Develop/teamMembers');
+const TeamMembers = require ('../teamMembers');
 
 const teamMembers= new TeamMembers('Linda','112233','Linda@profile.com.au');
 
