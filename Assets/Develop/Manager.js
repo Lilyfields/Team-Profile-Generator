@@ -1,6 +1,6 @@
-const Employee = require('./teamMembers')
+const TeamMembers = require('./teamMembers')
 
-class Manager extends Employee {
+class Manager extends TeamMembers {
     constructor({name, id, email,officeNumber}) {
         super({name,email,id});
         this.officeNumber = officeNumber;
