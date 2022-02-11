@@ -190,7 +190,7 @@ const buildProfile = () => {
     if (!fs.existsSync(OUTPUT_DIR)){
         fs.mkdirSync(OUTPUT_DIR)
     }
-    fs.writeFileSync(outpath,generateSite(teamMembers), "utf-8");
+    fs.writeFileSync(outputPath,generateSite(teamMembers), "utf-8");
 }
 
 createTeamProfile();
