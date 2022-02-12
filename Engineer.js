@@ -4,13 +4,13 @@ class Engineer extends TeamMembers{
     constructor ({name, id, email,githubUsername}) {
         super({name,id, email});
         this.githubUsername =githubUsername;
-        this.role = "Engineer";
+        this.role = Engineer;
     }
     getGithubUsername (){
         return this.githubUsername;
     }
     getRole () {
-        return "Engineer";
+        return this.role;
     }
 }
 module.exports = Engineer;

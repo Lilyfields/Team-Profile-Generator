@@ -1,10 +1,14 @@
+const fs = require("fs");
+const path = require ("path");
+const htmlDir= path.resolve(__dirname,'./teamProfile.html');
+
 const generateTeamProfile = (teamMembers) => {
     
     const HTML = [];
 
-    
-        console.log(teamMembers);
-        let teamProfile= 
+    let buildteamProfile = teamMembers => {
+        console.log(buildteamProfile);
+          let teamProfileHtml =
 
      `
     <!DOCTYPE html>
@@ -35,10 +39,30 @@ const generateTeamProfile = (teamMembers) => {
         </html>
     
     `
+    ;
    
-    HTML.join("");
+    HTML.push(
+    teamProfileHtml
+    .filter((teamMembers)=>teamMembers.getRole() === "Manager")
+    .map((manager) =>renderManager(manager))
+    );
+    
+    HTML.push(
+    teamProfileHtml
+    .filter((teamMembers)=>teamMembers.getRole()==="Engineer")
+    .map((engineer)=>renderEngineer(engineer))
+    );
 
-   
+    HTML.push(
+    teamProfileHtml
+    .filter((teamMembers)=>teamMembers.getRole() === "Intern")
+    .map((intern)=> renderIntern(intern))
+    );
+    
+    return renderFullMarkdown(HTML.join(""));
+
+
+    }
 
     let buildManager = manager => {
         console.log(buildManager);
@@ -57,7 +81,7 @@ const generateTeamProfile = (teamMembers) => {
 
         `;
         HTML.push(managerHtml);
-        HTML.join("");
+    
     }
 
     const buildEngineer = engineer => {
@@ -78,7 +102,7 @@ const generateTeamProfile = (teamMembers) => {
          `;
 
         HTML.push(engineerHtml);
-        HTML.join("");
+    
     }
 
     let buildIntern = intern => {
@@ -99,30 +123,31 @@ const generateTeamProfile = (teamMembers) => {
             `;
 
         HTML.push(internHtml);
-        HTML.join("");
+    
 
     }
 
+   const renderFullMarkdown = (_HTML)=>{
+       fs.readFileSync(path.resolve(htmlDir,"full-markdown.html"),"utf8");
+   }
 
-    for (let i = 0; i < teamMembers.length; i++) {
-        if (teamMembers[i].getRole() === "Manager") {
-            buildManager(teamMembers[i]);
-        }
-        if (teamMembers[i].getRole() === "Engineer") {
-            buildEngineer(teamMembers[i]);
-        }
-        if (teamMembers[i].getRole() === "Intern") {
-            buildIntern(teamMembers[i]);
-        }
+
+
+};
+
+    
+
+    for ( const n in teamMembers) {
+        return (`key is:${n} and value is: ${teamMembers[n]}`)
+    
+
     }
-
+        
+    
 
     module.exports = teamMembers;
 
     
-    HTML.push(teamProfile);  
-
-};
-
+  
 
 
