@@ -4,8 +4,6 @@ const Manager = require('./Manager');
 const Engineer = require('./Engineer');
 const Intern = require('./Intern');
 const generateSite = require ('./generateSite')
-const OUTPUT_DIR = path.resolve(_dirname, "output");
-const outputPath = path.join(OUTPUT_DIR,"teamProfile.html");
 
 
 const teamMembers = [];

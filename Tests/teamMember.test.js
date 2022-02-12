@@ -1,24 +1,48 @@
 const TeamMembers = require ('../teamMembers');
 
-const teamMembers= new TeamMembers('Linda','112233','Linda@profile.com.au');
+describe("TeamMembers",()=>{
+    const sampleTeamMember = {
+        name:"Linda",
+        id:112233,
+        email:"linda@profile.com.au",
+    };
 
-test('test retrieve of constructor values for the TeamMember object ', ()=> {
-   expect(teamMembers.name).toBe('Linda');;
-   expect(teamMembers.id).toBe('112233');
-   expect(teamMembers.email).toBe('Linda@profile.com.au');
+
+
+describe("constructor test",()=>{
+    test("construct a new instance the TeamMember class",()=>{
+        const teamMember = new TeamMembers (sampleTeamMember);
+        expect(teamMember).toBe(TeamMembers);
+    });
+
+    test("construct an new instance for TeamMember class with name,id, email",()=>{
+        const teamMember = new TeamMembers(sampleTeamMember);
+        expect(teamMember).toEqual({
+            name:"Linda",
+            id: 112233,
+            email:"linda@profile.com.au",
+        });
+    });
 });
 
-test('testing the getName() method', () => {
-    expect(teamMembers.getName()).toBe('Linda');
-});
+    describe("method test",()=>{
 
-test('testing the getId() method', () => {
-    expect(teamMembers.getId()).toBe('112233');
-});
+        test("testing the getName() method",()=>{
+            const teamMember = new TeamMembers(sampleTeamMember);
+            expect(teamMember.getName()).toEqual("Linda");
+        });
 
-test('test the getEmail() method', () =>{
-    expect(teamMembers.getEmail()).toBe ('Linda@profile.com.au');
-});
-test('test the getRole() method', () => {
-    expect(teamMembers.getRole()).toBe (TeamMembers);
-});
+        test("testing the getId() method",()=>{
+            const teamMember = new TeamMembers(sampleTeamMember);
+            expect(teamMember.getId()).toEqual(112233);
+        });
+
+        test("testing the getEmail() method",()=>{
+            const teamMember = new TeamMembers(sampleTeamMember);
+            expect(teamMember.getEmail()).toEqual("linda@profile.com.au");
+        });
+
+        });
+
+    });
+

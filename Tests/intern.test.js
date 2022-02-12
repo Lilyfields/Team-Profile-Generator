@@ -1,30 +1,60 @@
-const Intern = require ('../Intern');
+const Intern = require('../Intern');
 
-const intern= new Intern('Gean','778899','Gean@profile.com.au','UTS');
+describe("Intern",()=>{
+    const sampleIntern = {
+        name:"Gean",
+        id:778899,
+        email:"gean@profile.com.au",
+        school:"UTS",
+        role:"Intern",
+    };
 
-test('test retrieve of constructor values for the Intern object ', ()=> {
-   expect(intern.name).toBe('Gean');;
-   expect(intern.id).toBe('778899');
-   expect(intern.email).toBe('Gean@profile.com.au');
-   expect(intern.school).toBe('UTS')
+
+describe("constructor test",()=>{
+    test("construct a new instance the Intern class",()=>{
+        const intern = new Intern (sampleIntern);
+        expect(intern).toBe(Intern);
+    });
+
+    test("construct an new instance for Intern class with name,id, email,school",()=>{
+        const intern= new Intern(sampleIntern);
+        expect(intern).toEqual({
+            name:"Gean",
+            id: 778899,
+            email:"gean@profile.com.au",
+            school:"UTS",
+            role:"Intern",
+        });
+    });
 });
 
-test('testing the getName() method', () => {
-    expect(intern.getName()).toBe('Gean');
-});
+    describe("method test",()=>{
 
-test('testing the getId() method', () => {
-    expect(intern.getId()).toBe('778899');
-});
+        test("testing the getName() method",()=>{
+            const intern = new Intern(sampleIntern);
+            expect(intern.getName()).toEqual("Gean");
+        });
 
-test('test the getEmail() method', () =>{
-    expect(intern.getEmail()).toBe ('Gean@profile.com.au');
-});
+        test("testing the getId() method",()=>{
+            const intern = new Intern(sampleIntern);
+            expect(intern.getId()).toEqual(778899);
+        });
 
-test('test the getSchool() method', () =>{
-    expect(intern.getSchool()).toBe ('UTS')
-});
+        test("testing the getEmail() method",()=>{
+            const intern = new Intern(sampleIntern);
+            expect(intern.getEmail()).toEqual("gean@profile.com.au");
+        });
 
-test('test the getRole() method', () => {
-    expect(intern.getRole()).toBe (Intern);
-});
+        test("test the getSchool() method", ()=>{
+            const intern = new Intern(sampleIntern);
+            expect(intern.getSchool()).toEqual("UTS");
+        });
+
+        test("test the getRole() method",()=>{
+            const intern = new Intern(sampleIntern);
+            expect(intern.getRole()).toEqual("Intern");
+        });
+
+        });
+
+    });

@@ -1,30 +1,54 @@
 const Engineer = require ('../Engineer');
 
-const engineer= new Engineer('Lily','101112','Lily@profile.com.au','Lilyfields');
+describe("Engineer",()=>{
+    const sampleEngineer = {
+        name:"Lily",
+        id:101122,
+        email:"lily@profile.com.au",
+        githubUsername:"Lilyfields",
+    };
 
-test('test retrieve of constructor values for the Intern object ', ()=> {
-   expect(engineer.name).toBe('Lily');
-   expect(engineer.id).toBe('101112');
-   expect(engineer.email).toBe('Lily@profile.com.au');
-   expect(engineer.githubUsername).toBe('Lilyfields')
+
+
+describe("constructor test",()=>{
+    test("construct a new instance the Engineer class",()=>{
+        const engineer = new Engineer (sampleEngineer);
+        expect(engineer).toBe(Engineer);
+    });
+
+    test("construct an new instance for Engineer class with name,id, email, Github Username",()=>{
+        const engineer = new Engineer(sampleEngineer);
+        expect(engineer).toEqual({
+            name:"Lily",
+            id: 101122,
+            email:"lily@profile.com.au",
+            githubUsername:"Lilyfields",
+        });
+    });
 });
 
-test('testing the getName() method', () => {
-    expect(engineer.getName()).toBe('Lily');
-});
+    describe("method test",()=>{
 
-test('testing the getId() method', () => {
-    expect(engineer.getId()).toBe('101112');
-});
+        test("testing the getName() method",()=>{
+            const engineer = new Engineer(sampleEngineer);
+            expect(engineer.getName()).toEqual("Lily");
+        });
 
-test('test the getEmail() method', () =>{
-    expect(engineer.getEmail()).toBe ('Lily@profile.com.au');
-});
+        test("testing the getId() method",()=>{
+            const engineer = new Engineer(sampleEngineer);
+            expect(engineer.getId()).toEqual(101122);
+        });
 
-test('test the getGithubUsername() method', () =>{
-    expect(engineer.getGithubUsername()).toBe ('Lilyfields');
-});
+        test("testing the getEmail() method",()=>{
+            const engineer = new Engineer(sampleEngineer);
+            expect(engineer.getEmail()).toEqual("lily@profile.com.au");
+        });
 
-test('test the getRole() method', () => {
-    expect(engineer.getRole()).toBe (Engineer);
-});
+        test("testing the getGithubUsername() method",()=>{
+            const engineer = new Engineer(sampleEngineer);
+            expect(engineer.getGithubUsername()).toEqual("Lilyfields");
+        });
+
+        });
+
+    });
