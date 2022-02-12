@@ -14,7 +14,7 @@ describe("Manager",()=>{
 describe("constructor test",()=>{
     test("construct a new instance the Manager class",()=>{
         const manager = new Manager (sampleManager);
-        expect(manager).toBe(Manager);
+        expect(manager).toBeInstanceOf(Manager);
     });
 
     test("construct an new instance for Manager class with name,id, email,office number, role",()=>{

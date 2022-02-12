@@ -6,6 +6,7 @@ describe("Engineer",()=>{
         id:101122,
         email:"lily@profile.com.au",
         githubUsername:"Lilyfields",
+        role:"Engineer",
     };
 
 
@@ -13,7 +14,7 @@ describe("Engineer",()=>{
 describe("constructor test",()=>{
     test("construct a new instance the Engineer class",()=>{
         const engineer = new Engineer (sampleEngineer);
-        expect(engineer).toBe(Engineer);
+        expect(engineer).toBeInstanceOf(Engineer);
     });
 
     test("construct an new instance for Engineer class with name,id, email, Github Username",()=>{
@@ -23,6 +24,7 @@ describe("constructor test",()=>{
             id: 101122,
             email:"lily@profile.com.au",
             githubUsername:"Lilyfields",
+            role:"Engineer",
         });
     });
 });
@@ -47,6 +49,11 @@ describe("constructor test",()=>{
         test("testing the getGithubUsername() method",()=>{
             const engineer = new Engineer(sampleEngineer);
             expect(engineer.getGithubUsername()).toEqual("Lilyfields");
+        });
+
+        test("testing the getRole() method", ()=>{
+            const engineer = new Engineer(sampleEngineer);
+            expect(engineer.getRole()).toEqual("Engineer");
         });
 
         });
