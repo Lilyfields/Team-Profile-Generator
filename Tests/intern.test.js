@@ -13,7 +13,7 @@ describe("Intern",()=>{
 describe("constructor test",()=>{
     test("construct a new instance the Intern class",()=>{
         const intern = new Intern (sampleIntern);
-        expect(intern).toBe(Intern);
+        expect(intern).toBeInstanceOf(Intern);
     });
 
     test("construct an new instance for Intern class with name,id, email,school",()=>{
