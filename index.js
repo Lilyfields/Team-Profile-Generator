@@ -3,10 +3,15 @@ const inquirer = require('inquirer');
 const Manager = require('./Manager');
 const Engineer = require('./Engineer');
 const Intern = require('./Intern');
-const generateSite = require ('./generateSite')
+const generateSite = require('./generateSite');
+const path=require("path");
+const OUTPUT_DIR = path.resolve (__dirname,"html")
+const outputPath = path.join(OUTPUT_DIR, "html");
 
 
 const teamMembers = [];
+
+//validation for repsonses. Prevent people from leaving questions blank.
 
 const validateInput = (response) => {
     if (response === "") {
@@ -16,11 +21,14 @@ const validateInput = (response) => {
     }
 };
 
-let userChoice = inquirer.prompt (choices);
+//initiate the teamProfile building process
 
-
-    const createTeamProfile = () => {
-        return inquirer.prompt([
+ const init= async ()=> {
+ 
+   
+//inquirer prompts the usr with questions to select which team member they would like to enter information
+       
+const TeamProfileQs = [
                  
             {
                 name: "memberSelection",
@@ -31,33 +39,50 @@ let userChoice = inquirer.prompt (choices);
                     { name: "Engineer", value: "engineer", short: "Engineer" },
                     { name: "Intern", value: "intern", short: "Intern" },
                     { name: "None", value: "none", short: "None" },
-                    
+                
                 ],
-                validate: userChoice = ()=> {
-                    if (userChoice === "none"){
-                        return buildProfile();
-                    
+                validate: memberSelectionInput = () => {
+                    if (memberSelectionInput) {
+                        return true;
                     }else{
-                        if (userChoice ==="manager") {
-                            return createManager();
-                        }
-                        if (userChoice === "engineer"){
-                            return createEngineer();
-                        }
-                        if(userChoice === "intern"){
-                            return createIntern();
-                        }
-                    }
-
-                }
+                        console.log ('Please select one of these options');
+                        return false;
+                    }}
+                        
             },
 
-        ])};
+        ];
+//if the user click on none then the question then it will go to end stage.
+
+const{createTeamProfile} = inquirer.prompt(TeamProfileQs);
+createTeamProfile();
+
+if (createTeamProfile === "none"){
+    return builtProfile();
+// if user chooses Manager, engineer, or intern then it will take to the respective process to create selected Member              
+}else{
+ if (memberSelectionInput ==="manager") {
+return createManager();
+ }
+
+if (memberSelectionInput === "engineer"){
+return createEngineer();
+}
+if(memberSelectionInput === "intern"){
+return createIntern();
+}
+}
+}                
+
+//Above the Team member object is being created via users selection and response/input.
 
 
+//if Manager was to be selected. it will activate the createManager funtion and inqirer will prompt array of questions to gather information on Manager.
+//Similar to above information gathered will then be pushed through the TeamMember array. Call back function will return user to CreateTeamProfile upon completion.
 
-const createManager = () => {
-    return inquirer.prompt ([
+const createManager= async ()=>{
+    
+        const createManagerQs= [
 
         {
             type: "input",
@@ -91,17 +116,22 @@ const createManager = () => {
                 }
             }
         },
-    ]);
-}
+    ];
 
-const managerResponse = inquirer.prompt(response);
+
+const {managerResponse} = inquirer.prompt(createManagerQs);
 const manager = new Manager(managerResponse);
 teamMembers.push(manager);
 createTeamProfile();
+};
+
+//if Engineer was to be selected. it will activate the createEngineer funtion and inqirer will prompt array of questions to gather information on Engineer.
+//Similar to above information gathered will then be pushed through the TeamMember array. Call back function will return user to CreateTeamProfile upon completion.
 
 
-const createEngineer = () => {
-    return inquirer.prompt ([
+const createEngineer= async ()=>{
+
+const createEngineerQs =[
 
         {
             type: "input",
@@ -134,17 +164,25 @@ const createEngineer = () => {
                     return "Please enter a valid Github Username.";
                 }
             }
-        },
-    ]);
-}
+    },
+  ];
 
-const engineerResponse = inquirer.prompt(response);
+
+const engineerResponse = inquirer.prompt(createEngineerQs);
 const engineer = new Engineer(engineerResponse);
 teamMembers.push(engineer);
 createTeamProfile();
 
-const createIntern = () => {
-    return inquirer.prompt ([
+
+};
+
+//if Itern was to be selected. it will activate the createEngineer funtion and inqirer will prompt array of questions to gather information on Intern.
+//Similar to above information gathered will then be pushed through the TeamMember array. Call back function will return user to CreateTeamProfile upon completion.
+
+
+const createIntern = async () => {
+
+const createInternQs = [
 
         {
             type: "input",
@@ -171,24 +209,23 @@ const createIntern = () => {
             message: "Please enter the person school name?",
             validate: validateInput,
         },
-    ]);
-}
+    ];
 
-const internResponse = inquirer.prompt(response);
+
+const internResponse = inquirer.prompt (createInternQs);
 const intern = new Intern(internResponse);
 teamMembers.push(intern);
-createTeamProfile ();
+createTeamProfile();
+};
 
+// This fxn here is used to render the teamMember Array and write the file to the html folder.
 
-const buildProfile = () => {
-    console.log (`
-    ***Team Profile Completed!***
-    `);
-
-    if (!fs.existsSync(OUTPUT_DIR)){
+function builtProfile() {
+    if(!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }
-    fs.writeFileSync(outputPath,generateSite(teamMembers), "utf-8");
+    fs.writeFileSync(outputPath,generateSite(teamMembers),"utf-8");
 }
 
-createTeamProfile();
+//call back function to initiate the initial fxn and whole process again
+init();
