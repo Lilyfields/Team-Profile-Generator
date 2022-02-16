@@ -1,11 +1,11 @@
 const fs= require ("fs");
 const path = require ("path");
-const templatesDir = path.resolve(__dirname,"Team Profile Generator");
+const templatesDir = path.resolve(__dirname,'html Templates');
 
 const render = teamMembers => {
 
 const HTML = [];
-
+console.log(teamMembers);
 HTML.push(...teamMembers
     .filter(teamMembers =>teamMembers.getRole() === "Manager")
     .map(manager =>renderManager(manager))
@@ -50,13 +50,13 @@ HTML.push(...teamMembers
         template = replacePlaceholders(template,"name", intern.getName());
         template = replacePlaceholders(template,"id", intern.getId());
         template = replacePlaceholders(template,"email", intern.getEmail());
-        template = replacePlaceholders(template,"school", intern.school());
+        template = replacePlaceholders(template,"school", intern.getSchool());
         template = replacePlaceholders(template,"role", intern.getRole());
         return template;
     };
 
     const renderFullMarkdown = (HTML) => {
-        const templates =fs.readFileSync(path.resolve(templatesDir,"full-markdown.html"),"utf8");
+        const templates =fs.readFileSync(path.resolve(templatesDir,"team-profile.html"),"utf8");
         return replacePlaceholders(templates, "teamMembers", HTML);
     };
 
@@ -65,4 +65,4 @@ HTML.push(...teamMembers
         return template.replace(pattern, value);
     };
 
-    module.exports = render
+    module.exports = render;
