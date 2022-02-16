@@ -1,62 +1,36 @@
 const Manager = require ('../Manager')
 
-describe("Manager",()=>{
-    const sampleManager = {
-        name:"Bob",
-        id:334455,
-        email:"bob@profile.com.au",
-        officeNumber:5549,
-        role:"Manager",
-    };
+const manager = new Manager('Bob',334455,'bob@profile.com.au',5549);
+    
 
 
-
-describe("constructor test",()=>{
-    test("construct a new instance the Manager class",()=>{
-        const manager = new Manager (sampleManager);
-        expect(manager).toBeInstanceOf(Manager);
-    });
-
-    test("construct an new instance for Manager class with name,id, email,office number, role",()=>{
-        const manager= new Manager(sampleManager);
-        expect(manager).toEqual({
-            name:"Bob",
-            id:334455,
-            email:"bob@profile.com.au",
-            officeNumber:5549,
-            role:"Manager",
-        });
-    });
-});
-
-    describe("method test",()=>{
-
-        test("testing the getName() method",()=>{
-            const manager = new Manager(sampleManager);
-            expect(manager.getName()).toEqual("Bob");
-        });
-
-        test("testing the getId() method",()=>{
-            const manager = new Manager(sampleManager);
-            expect(manager.getId()).toEqual(334455);
-        });
-
-        test("testing the getEmail() method",()=>{
-            const manager = new Manager(sampleManager);
-            expect(manager.getEmail()).toEqual("bob@profile.com.au");
-        });
-
-        test("testing the getOfficeNumber() method",()=>{
-            const manager = new Manager (sampleManager);
-            expect(manager.getOfficeNumber()).toEqual(5549)
-
-        });
-
-        test("test the getRole() method", ()=>{
-            const manager = new Manager (sampleManager);
-            expect(manager.getRole()).toEqual("Manager");
-        });
+    test('test whether we can get the constructor value for TeamMember object',()=>{
+        expect(manager.name).toBe('Bob');
+        expect(manager.id).toBe(334455);
+        expect(manager.email).toBe('bob@profile.com.au');
+        expect(manager.officeNumber).toBe(5549);
 
     });
 
-    });
+    
+        test('using getName() method to get name',()=>{            
+            expect(manager.getName()).toBe('Bob');
+            });
+    
+
+
+        test('using getId() method to get id',()=>{
+            expect(manager.getId()).toBe(334455);
+        });
+
+        test('using getEmail() method to get email',()=>{           
+            expect(manager.getEmail()).toBe('bob@profile.com.au');
+        });
+
+        test('using getOfficeNumber() method to get officeNumber',()=>{           
+            expect(manager.getOfficeNumber()).toBe(5549);
+        });
+
+        test('using getRole() method to get role',()=>{           
+            expect(manager.getRole()).toBe('Manager');
+        });
