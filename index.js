@@ -99,7 +99,7 @@ inquirer.prompt([
                },
            
                ]).then(function(response) {
-                   const createManager = new  Manager (baseResponse.responseName, baseResponse.responseID, baseResponse. responseEmail, baseResponse.responseOfficeNumber,baseResponse.responseRole);
+                   const createManager = new  Manager (baseResponse.responseName, baseResponse.responseID, baseResponse. responseEmail, response.responseOfficeNumber);
                    teamMembers.push(createManager);
                    if(response.responseConfirmation === true) {
                        teamMemberQs()
@@ -142,7 +142,9 @@ inquirer.prompt([
     },
 
     ]).then(function (response) {
-        const createEngineer = new Engineer(baseResponse.responseName, baseResponse.responseID, baseResponse. responseEmail, baseResponse.responseGithubUsername, baseResponse.responseRole);
+        const createEngineer = new Engineer(baseResponse.responseName, baseResponse.responseID, baseResponse. responseEmail, response.responseGithubUsername);
+        console.log(baseResponse);
+        console.log(response);
         teamMembers.push(createEngineer);
         if(response.responseConfirmation === true) {
             teamMemberQs()
@@ -155,8 +157,8 @@ inquirer.prompt([
 
 }
 
-function internQs(baseResponse) {
-    inquirer.prompt ([
+async function internQs(baseResponse) {
+   const response = await inquirer.prompt ([
            {
                
                type: "input",
@@ -173,18 +175,16 @@ function internQs(baseResponse) {
            name:"responseConfirmation",
        },
    
-       ]).then(function(response) {
-           const createIntern = new Intern(baseResponse.responseName, baseResponse.responseID, baseResponse. responseEmail, baseResponse.responseSchool, baseResponse.responseConfirmation, baseResponse.responseRole);
-           teamMembers.push(createIntern);
-           if(response.responseConfirmation === true) {
-               teamMemberQs()
+       ]);
+    const createIntern = new Intern(baseResponse.responseName, baseResponse.responseID, baseResponse. responseEmail, response.responseSchool);
+    teamMembers.push(createIntern);
+    if(response.responseConfirmation === true) {
+        teamMemberQs()
            
            }else{
                builtTeamProfile();
                console.log ("rendered")
            }
-       })
-   
    }
    function builtTeamProfile() {
        const HTML =render(teamMembers);
@@ -196,7 +196,7 @@ function internQs(baseResponse) {
            }
        });
 
-    };
+    }
    
     
 
