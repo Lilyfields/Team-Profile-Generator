@@ -1,61 +1,36 @@
 const Engineer = require ('../Engineer');
 
-describe("Engineer",()=>{
-    const sampleEngineer = {
-        name:"Lily",
-        id:101122,
-        email:"lily@profile.com.au",
-        githubUsername:"Lilyfields",
-        role:"Engineer",
-    };
+const engineer = new Engineer('Lily',778899,'lily@profile.com.au','Lilyfields@github');
+    
 
 
-
-describe("constructor test",()=>{
-    test("construct a new instance the Engineer class",()=>{
-        const engineer = new Engineer (sampleEngineer);
-        expect(engineer).toBeInstanceOf(Engineer);
-    });
-
-    test("construct an new instance for Engineer class with name,id, email, Github Username",()=>{
-        const engineer = new Engineer(sampleEngineer);
-        expect(engineer).toEqual({
-            name:"Lily",
-            id: 101122,
-            email:"lily@profile.com.au",
-            githubUsername:"Lilyfields",
-            role:"Engineer",
-        });
-    });
-});
-
-    describe("method test",()=>{
-
-        test("testing the getName() method",()=>{
-            const engineer = new Engineer(sampleEngineer);
-            expect(engineer.getName()).toEqual("Lily");
-        });
-
-        test("testing the getId() method",()=>{
-            const engineer = new Engineer(sampleEngineer);
-            expect(engineer.getId()).toEqual(101122);
-        });
-
-        test("testing the getEmail() method",()=>{
-            const engineer = new Engineer(sampleEngineer);
-            expect(engineer.getEmail()).toEqual("lily@profile.com.au");
-        });
-
-        test("testing the getGithubUsername() method",()=>{
-            const engineer = new Engineer(sampleEngineer);
-            expect(engineer.getGithubUsername()).toEqual("Lilyfields");
-        });
-
-        test("testing the getRole() method", ()=>{
-            const engineer = new Engineer(sampleEngineer);
-            expect(engineer.getRole()).toEqual("Engineer");
-        });
-
-        });
+    test('test whether we can get the constructor value for TeamMember object',()=>{
+        expect(engineer.name).toBe('Lily');
+        expect(engineer.id).toBe(778899);
+        expect(engineer.email).toBe('lily@profile.com.au');
+        expect(engineer.githubUsername).toBe('Lilyfields@github');
 
     });
+
+    
+        test('using getName() method to get name',()=>{            
+            expect(engineer.getName()).toBe('Lily');
+            });
+    
+
+
+        test('using getId() method to get id',()=>{
+            expect(engineer.getId()).toBe(778899);
+        });
+
+        test('using getEmail() method to get email',()=>{           
+            expect(engineer.getEmail()).toBe('lily@profile.com.au');
+        });
+
+        test('using getGithubUsername() method to get school',()=>{           
+            expect(engineer.getGithubUsername()).toBe('Lilyfields@github');
+        });
+        test('using getRole() method to get role',()=>{           
+            expect(engineer.getRole()).toBe('Engineer');
+        });
+
