@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require('fs');
 const inquirer = require('inquirer');
 const Manager = require('./Manager');
 const Engineer = require('./Engineer');
@@ -123,15 +123,8 @@ inquirer.prompt([
             type: "input",
             message: "Please enter the person Github Username?",
             name: "responseGithubUsername",
-            validate: function (value) {
-                let pass = value.match(
-                    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
-                if (pass) {
-                    return true;
-                } else {
-                    return "Please enter a valid Github Username?";
-                }
-            }
+            validate: validateInput,
+                
         },
 
     {
