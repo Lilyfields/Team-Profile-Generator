@@ -9,7 +9,7 @@ const render = require('./generateSite');
 
 const teamMembers = [];
 
-//validation for repsonses. Prevent people from leaving questions blank.
+
 
 const validateInput = (response) => {
     if (response === "") {
