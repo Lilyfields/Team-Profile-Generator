@@ -27,7 +27,7 @@ const engineer = new Engineer('Lily',778899,'lily@profile.com.au','Lilyfields@gi
             expect(engineer.getEmail()).toBe('lily@profile.com.au');
         });
 
-        test('using getGithubUsername() method to get school',()=>{           
+        test('using getGithubUsername() method to get Github Username',()=>{           
             expect(engineer.getGithubUsername()).toBe('Lilyfields@github');
         });
         test('using getRole() method to get role',()=>{           
